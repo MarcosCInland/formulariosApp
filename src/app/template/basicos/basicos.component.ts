@@ -26,6 +26,8 @@ export class BasicosComponent implements OnInit {
 
   guardar() {
     console.log(this.miForm);
+    //Limpiar formulario
+    this.miForm.resetForm();
   }
 
 }
