@@ -10,9 +10,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class SwitchesComponent implements OnInit {
 
   miForm: FormGroup = this.fb.group({
-    genero: ['M', Validators.required],
-    notificaciones: [true, Validators.required],
-    condiciones: [false, Validators.requiredTrue]
+    genero: ['', Validators.required],
+    notificaciones: [, Validators.required],
+    condiciones: [, Validators.requiredTrue]
   })
 
   persona = {
@@ -23,7 +23,24 @@ export class SwitchesComponent implements OnInit {
   constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
-    this.miForm.reset(this.persona); //en vez de asignar, y en caso no tengan todas las propiedades
+    this.miForm.reset({
+      ...this.persona,
+      condiciones: false
+    }); //en vez de asignar, y en caso no tengan todas las propiedades
+
+    this.miForm.valueChanges.subscribe(
+      ({condiciones, ...rest}) => {
+        //delete form.condiciones;
+        this.persona = rest;
+      }
+    )
+
+  }
+
+  guardar(): void {
+    const formValue = {...this.miForm.value};
+    delete formValue.condiciones;
+    this.persona = formValue;
   }
 
 }
