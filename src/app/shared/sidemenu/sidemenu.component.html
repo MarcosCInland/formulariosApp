@@ -1,5 +1,5 @@
+<!--    BEGIN TEMPLATE    -->
 <h2>Template</h2>
-
 <hr>
 
 <ul class="list-group">
@@ -10,9 +10,10 @@
         {{option.texto}}
     </li>
 </ul>
+<!--    END TEMPLATE    -->
 
+<!--    BEGIN REACTIVE    -->
 <h2 class="mt-5">Reactive</h2>
-
 <hr>
 
 <ul class="list-group">
@@ -23,3 +24,18 @@
         {{option.texto}}
     </li>
 </ul>
+<!--    END REACTIVE    -->
+
+<!--    BEGIN VALIDACIONES    -->
+<h2 class="mt-5">Validaciones</h2>
+<hr>
+
+<ul class="list-group">
+    <li class="list-group-item"
+        *ngFor="let option of authMenu"
+        [routerLink]="option.ruta"
+        routerLinkActive="active">
+        {{ option.texto }}
+    </li>
+</ul>
+<!--    END VALIDACIONES    -->
